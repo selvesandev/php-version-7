@@ -232,7 +232,13 @@ use const my\namespace\{constOne, constTwo as c2};
 
 ```
 
+## Integer Division (intdiv(num1,num2))
+Divide the numbers and forget the remainder.
 
+```php
+echo intdiv(10,3);//3
+echo intdiv(11,3);//2
+```
 
 
  
