@@ -1,8 +1,8 @@
-#PHP Version 7
+# PHP Version 7
 
-##Type Hinting
+## Type Hinting
 
-####Object Type Declaration
+#### Object Type Declaration
 Available in php 5.0.
 ```php
 function getA(A $obj)
@@ -29,12 +29,12 @@ class HelloWorld{
     
 ```
 
-####Primitive Type Declaration
+#### Primitive Type Declaration
 Boolean, String, Float, Integer
 
 
 
-####Closure Type Declaration
+#### Closure Type Declaration
 Accepts a closure function as an arguments. Available in php 5.4
 ```php
 function acceptClosure(callable $closure)
@@ -45,7 +45,7 @@ function acceptClosure(callable $closure)
 
 
 
-##Return Type Declaration
+## Return Type Declaration
 Completely new in PHP.
 ```php
 
@@ -67,7 +67,7 @@ function objReturn():self{}; //should be used inside a class.
 
 ```
 
-##Null Coalescing
+## Null Coalescing
 Use this inspite of using if condition 
 ```php
 
@@ -78,7 +78,7 @@ echo $a['not_found'] ?? $personName ?? 'Not Available';
 ```
 
 
-##SpaceShip Operator (<=>)
+## SpaceShip Operator (<=>)
 
 ```php
 $x= 2<=>2;// return 0;
@@ -91,7 +91,7 @@ $x= array(2,2)<=>array(1,2);// return 1;
 ```
 
 
-##Define Constant with Non Primitive Types
+## Define Constant with Non Primitive Types
 Before php 7 you could define constant with define function
 with the value of premitive types only.
 
@@ -103,7 +103,7 @@ json_encode(OFFICE,128);
 
 ```
 
-##Anonymous Classes.
+## Anonymous Classes.
 Php 7 allows us to create anonymous classes so Now we have the
 ability to build the object and the class itself is thrown away
 not stored in memory and it cannot be re-instantiated.
@@ -118,7 +118,7 @@ $framwork::staticMethod();
 
 ```
 
-####Constructor
+#### Constructor
 
 ```php
 $framework = new class('selvesan') extends AnotherClass implements interface
@@ -133,14 +133,14 @@ $framework = new class('selvesan') extends AnotherClass implements interface
 
 ```
 
-##Unicode Character Render with HEX code
+## Unicode Character Render with HEX code
 
 ```php
 echo "\u{2200}";
 ```
 
 
-##Function Call Context
+## Function Call Context
 Like Javascript 
 ```php
 $myFunc = function () {
@@ -166,7 +166,7 @@ return $callMethod->call(new A());
 ```
 
 
-##Unserialize function
+## Unserialize function
 In php7 the unserialize function takes a second arguments which 
 allows us to filter what we can and what we can't unserialize for
 security reasons.
@@ -188,7 +188,7 @@ unserialize($serializedData,["allowed_classes"=>['X','A']]);
 ```
 
 
-##ASSERT
+## ASSERT
 In php 7 the assert error generating function can also take conditions
 
 ```php
