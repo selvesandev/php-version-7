@@ -265,3 +265,157 @@ random_int(10000,10000000);//no float can be generated.
 
 
 ## Regular Expression.
+Php 7 Introduces the preg_replace_callback_array() function which takes two arguments.
+
+```php
+$subject = "Aaaaa aa BBBbb";
+
+preg_replace_callback_array([
+    '~[a]+~i' => function ($match) {
+        echo '[a]', $match[0] . '<br>';
+    },
+    '~[b]+~i' => function ($match) {
+        echo '[b]', $match[0] . '<br>';
+    }
+], $subject,[-1 is default limit],[$numOfMatches]);
+
+```
+
+Here the 2nd argument is the string for the regular expression check i.e $subject.  
+And the 1st argument is the associative array with key as the regular expression and a callback function 
+associated with it. Each time the subject matches with the regular expression the callback function is called. $match arg in the callback function will have the matched value.   
+3rd argument is option which is limit by default it is -1 which means unlimited.  
+4th argument is number of matches found.
+
+
+## Generators
+When you find a `yield` keyword in a function then that means it is a generator.
+When you run a generator function it will return a object which lets you control the execution of your generator execution.
+You can think this object as the pedal of your generator.
+
+```php
+function setNav()
+{
+    $distance = 0;
+    echo 'start from top <br>';
+    yield 'First Top<br>';
+    echo 'second echo statement<br>';
+    yield 'Second Step <br>';
+    echo 'Second Last <br>';
+    echo 'Last <br>';
+    return 'hello';
+}
+
+$generatorControls = setNav();
+echo $generatorControls->current();//Goes to the 1st yield will execute the code till there an return the yield value value.
+echo $generatorControls->current();//will print First Top
+echo $generatorControls->current();//will print First Top
+
+
+echo $generatorControls->next();//the next method will not return anything so echo here is useless.
+
+echo $generatorControls->current();//will print Second Step.
+
+$generatorControls->next();
+
+echo $generatorControls->getReturn();//will return the returned value from function here 'hello'
+
+```
+
+Generator function allows you to breaks the execution context into iterable parts. It return an object which will let you manipulate how your
+generator function will get invoked and then ofcourse what we have is the ability to pause, come out of the function etc.
+
+  
+**We can also send a value to the yield**  
+```php
+
+function myFunc()
+{
+    $distance = 0;
+    echo 'start of the generators <br>';
+    $distance = yield.'<br>';
+    echo $distance;
+    $distance = yield.'<br>';
+    echo $distance;
+}
+
+$control = myFunc();
+$control->current();
+echo 'analyzing distance....<br>';
+
+$control->send(40);//the send method will let us send the value to the yield into the function
+
+echo 'analyzing distance....<br>';
+
+$control->send(80);
+
+```
+
+**ITERATOR on `yield`**
+```php
+function values()
+{
+    yield from [200,400,600];
+    yield 500;
+    return 800;
+}
+
+$controls = values();
+
+foreach ($controls as $control) {
+    echo $control . '<br>';//when you are using the current, send or iterating in a loop like this you are going
+    //to get the yield value but not the return value
+}
+
+echo "<br>" . $controls->getReturn();//this will help us to received the returned value i.e 800;
+
+
+```
+
+**Note:** you cannot get return value of generators that hasn't returned the yield first. Therefore the getreturned should be after the getting the yield value.
+
+#### Combining Two Generator Function 
+
+```php
+
+function gen1()
+{
+    yield from gen2();
+    yield from [200, 400];
+    yield 500;
+}
+
+function gen2()
+{
+    yield 'this';
+    yield 'is';
+    yield 'demo';
+}
+
+$yControl=gen1();
+foreach ($yControl as $item){
+    echo $item.'<br>';
+}
+```
+
+## Deprecated
+* Php 7 No longer support the old Type class constructor i.e method name with the same name as class name. It will still work but can stop in any time soon.
+
+* Calling a non static member in a static way is going to be removed in coming version. we can call the non static method using the scope resolution now.
+
+* password_hash('string',PASSWORD_DEFAULT);
+//$2y$10$alsdfjlasdf.lasdjf.sadlfjaljrowioeasdf 
+1st 2 digists is the algorith default BYCRYPT.  
+2st 2  digits $10 is cost greater number greater random value. too huge number will slow.  
+3rt 22 digits in salt
+and after that is your password
+
+```php
+password_hash('password',PASSWORD_DEFAULT,array(
+    'salt'=>''//removed in php7 salt will be default
+    'cost'=>16//allowed in php7
+))
+``` 
+
+
+
