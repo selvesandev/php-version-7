@@ -188,7 +188,7 @@ unserialize($serializedData,["allowed_classes"=>['X','A']]);
 ```
 
 
-## ASSERT
+## Expectation (ASSERT)
 In php 7 the assert error generating function can also take conditions
 
 ```php
@@ -202,9 +202,37 @@ class HandleError extends AssertionError{
 
 assert($a>10,new HandlerError);
 
+```
 
 
+## Namespace
+Namespaces are there to prevent conflict between to file, class or functions.  
+Importing Class
+```php
+use mynamespace\MyClass as x;
+$obj=new x();
+```
+Importing Function
+```php
+use function  myFunction\calc as calc;
+calc();
 
 ```
+
+Import Constant.
+```php
+use const myConst\Language;
+```
+
+In php 7
+```php
+use my\namespace\{classOne,classTwo as c2};
+use function my\namespace\{funcOne, funcTwo as f2};
+use const my\namespace\{constOne, constTwo as c2};
+
+```
+
+
+
 
  
