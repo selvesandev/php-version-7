@@ -241,4 +241,27 @@ echo intdiv(11,3);//2
 ```
 
 
- 
+## Session Options
+In php 7 you can modify your session option. Checkout the phpinfo() go to the session section(search for session);
+we get a whole bunch of options for session in php 7 and which can also be modified by passing an associative array of key and value pair.
+```php
+session_start([
+    'cache_limiter' => 'private',
+    'read_and_close' => false
+]);
+
+$_SESSION['name'] = "James";
+
+```
+
+## Random Functions
+Php 7 provides us some random data generating function. More secure way to generate salt.
+```php
+random_bytes(100);//random string generation 100 characters
+
+random_int(10000,10000000);//no float can be generated.
+
+```
+
+
+## Regular Expression.
